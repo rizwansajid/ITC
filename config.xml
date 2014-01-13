@@ -30,7 +30,8 @@
         Apache Cordova Team
     </author>
 
-    <access origin="*"/>
+    <!--<access origin="*"/>-->
+  <access origin="*.pushwoosh.com" />
 
     <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
     <content src="index.html" />
@@ -110,6 +111,9 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage"/>
     </feature>
+  <feature name="PushNotification">
+    <param name="ios-package" value="PushNotification" />
+  </feature>
     <!-- Deprecated plugins element. REmove in 3.0 -->
     <plugins>
     </plugins>
