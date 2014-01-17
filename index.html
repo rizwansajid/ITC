@@ -35,13 +35,12 @@
                 $("#txtEmail").val(window.localStorage["username"]);
                 $("#txtPassword").val(window.localStorage["password"]);
                 //alert("button Logged1.");
-                
-                alert("registered....");
+                //initPushwoosh();
+                 alert("registered....");
                 handleLogin();
                 //alert("button Logged2.");
                 UserLogin(); LoginBusinessAdmin();
                 LoginBackOfficeUser();
-                initPushwoosh();
                 //$('#dvLoading').fadeOut(2000);
 //                alert("All Methods Called");
 //                var type = getUrlVars()["type"];
@@ -64,14 +63,13 @@
 
             }
             $("#submit").click(function () {
-                               
+                 //initPushwoosh();              
                 //alert("button clicked1.");
                 handleLogin();
                 //alert("button clicked2.");
                 UserLogin();
                 LoginBusinessAdmin();
                 LoginBackOfficeUser();
-                initPushwoosh();
             });
 
 
