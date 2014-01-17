@@ -35,35 +35,36 @@
                 $("#txtEmail").val(window.localStorage["username"]);
                 $("#txtPassword").val(window.localStorage["password"]);
                 //alert("button Logged1.");
-                //initPushwoosh();
-                 alert("registered....");
+                initPushwoosh();
+                alert("registered....");
                 handleLogin();
                 //alert("button Logged2.");
                 UserLogin(); LoginBusinessAdmin();
                 LoginBackOfficeUser();
                 //$('#dvLoading').fadeOut(2000);
-//                alert("All Methods Called");
-//                var type = getUrlVars()["type"];
-//                alert("Query String Type: " + type);
-//                var schoolId = getUrlVars()["schoolId"];
-//                alert("Query String SchoolId: " + schoolId);
-//                if (type != '' && type != undefined) {
-//                    alert("Entered if: " + type);
-//                    if (type == 'News') {
-//                        window.location.href = "news.html?value=" + schoolId + "&userId=0&username=Admin";
-//                    }
-//                    else if (type == 'Calender') {
-//                        window.location.href = "calendar.html?value=" + schoolId + "&userId=0&username=Admin";
-//                    }
-//                    else if (type == 'Resource') {
-//                        window.location.href = "resources.html?value=" + schoolId + "&userId=0&username=Admin";
-//                    }
-//                }
+                //                alert("All Methods Called");
+                //                var type = getUrlVars()["type"];
+                //                alert("Query String Type: " + type);
+                //                var schoolId = getUrlVars()["schoolId"];
+                //                alert("Query String SchoolId: " + schoolId);
+                //                if (type != '' && type != undefined) {
+                //                    alert("Entered if: " + type);
+                //                    if (type == 'News') {
+                //                        window.location.href = "news.html?value=" + schoolId + "&userId=0&username=Admin";
+                //                    }
+                //                    else if (type == 'Calender') {
+                //                        window.location.href = "calendar.html?value=" + schoolId + "&userId=0&username=Admin";
+                //                    }
+                //                    else if (type == 'Resource') {
+                //                        window.location.href = "resources.html?value=" + schoolId + "&userId=0&username=Admin";
+                //                    }
+                //                }
 
 
             }
             $("#submit").click(function () {
-                 //initPushwoosh();              
+                alert("Submit Press");
+                initPushwoosh();              
                 //alert("button clicked1.");
                 handleLogin();
                 //alert("button clicked2.");
