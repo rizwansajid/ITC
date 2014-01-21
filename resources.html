@@ -2,13 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <!--<script src="JS/jquery-1.4.2.min.js" type="text/javascript"></script>-->
-    <script src="JS/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <!--  <script src="js/phonegap-1.4.1.js" type="text/javascript"></script>-->
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
     <script src="JS/json2.js" type="text/javascript"></script>
     <script src="JS/date.format.js" type="text/javascript"></script>
     <link href="Styles/MobileAppStyle.css" rel="stylesheet" type="text/css" />
+    
     <title>Resources</title>
     <!-- toggle menu -->
+    
     <script type="text/javascript">
         $(function () {
             // run the currently selected effect
@@ -36,6 +40,14 @@
         });
     </script>
     <!-- toggle menu ends -->
+     <style type="text/css">
+     .resoursesclick
+     {
+     color:#737373;
+   // color:White;
+     text-decoration:none;
+     }
+     </style>
     <script type="text/javascript">
 
         function getUrlVars() {
@@ -90,7 +102,25 @@
                 }
             });
         }
-
+          $(document).ready(function () {
+            //alert("ready");
+            //downloadFile();
+            assignLinks();
+            GetFunctions();
+            $('#ddlChannels').change(function () {
+                var channelId = $('#ddlChannels').val();
+                if (channelId !== "0") {
+                    GetResourcesChannelIdWise(channelId);
+                }
+            });
+            $('.resoursesclick').live("click", function () {
+                   // alert('click');
+                    var path = $(this).attr("id");
+                    downloadFile(path);
+                });
+            
+        });
+        
         function GetResources() {
             $.ajax({
                 //url: 'WebService.asmx/GetResources_SchoolIdWise',
@@ -102,8 +132,10 @@
                 success: function (response) {
                     var Kewords = {};
                     Kewords = response.d;
+                    //alert(Kewords);
                     for (i = 0; i < Kewords.length; i++) {
-                        document.getElementById("dlResources").innerHTML += "<dt>" + Kewords[i].ResourcesTitle + "</dt><dd>" + Kewords[i].ResourcesDescription + "</dd>";
+                   // alert(Kewords[i].ResourceName);
+                        document.getElementById("dlResources").innerHTML += "<dt><a class='resoursesclick' id='" + Kewords[i].ResourceName + "' >" + Kewords[i].ResourcesTitle + "</a></dt><dd>" + Kewords[i].ResourcesDescription + "</dd>";
                     }
 
                 },
@@ -127,7 +159,7 @@
                     Kewords = response.d;
                     document.getElementById("dlResources").innerHTML = "";
                     for (i = 0; i < Kewords.length; i++) {
-                        document.getElementById("dlResources").innerHTML += "<dt>" + Kewords[i].ResourcesTitle + "</dt><dd>" + Kewords[i].ResourcesDescription + "</dd>";
+                        document.getElementById("dlResources").innerHTML += "<dt><a class='resoursesclick' id='" + Kewords[i].ResourceName + "'>" + Kewords[i].ResourcesTitle + "</a></dt><dd>" + Kewords[i].ResourcesDescription + "</dd>";
                     }
 
                 },
@@ -162,17 +194,7 @@
             });
         }
 
-        $(document).ready(function () {
-            assignLinks();
-            GetFunctions();
-            $('#ddlChannels').change(function () {
-                var channelId = $('#ddlChannels').val();
-                if (channelId !== "0") {
-                    GetResourcesChannelIdWise(channelId);
-                }
-            });
-        });
-
+     
         function GetUsername() {
             var usernamewithoutspace = getUrlVars()["username"];
             var username = usernamewithoutspace.replace("%20", " ");
@@ -185,10 +207,67 @@
             GetChannels();
             GetUsername();
         }
-      
+
+function onBodyLoad()
+{
+//alert("onBodyLoad.");
+document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+function downloadFile(FileName) {
+         //   alert("downloadFile invoked..");
+            var remoteFile = 'http://projectx.2bvision.com/ResourceFiles/' + FileName;
+
+           // alert(remoteFile);
+            var localFileName = remoteFile.substring(remoteFile.lastIndexOf('/') + 1);
+          
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
+           
+                fileSystem.root.getFile(localFileName, { create: true, exclusive: false }, function (fileEntry) {
+                    var localPath = fileEntry.fullPath;
+              //      alert(localPath);       
+                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
+                        localPath = localPath.substring(7);
+                    }
+                    var ft = new FileTransfer();
+                    ft.download(remoteFile,
+                        localPath, function (entry) {
+                            //var dwnldImg = document.getElementById("dwnldImg");
+                            //dwnldImg.src = entry.fullPath;
+                            //dwnldImg.style.visibility = "visible";
+                            //dwnldImg.style.display = "block";
+                        }, fail);
+                }, fail);
+            }, fail);
+            alert("File Downloaded Successfully");
+
+        }
+
+        function showLink(url) {
+            alert(url);
+            var divEl = document.getElementById("ready");
+            var aElem = document.createElement("a");
+            aElem.setAttribute("target", "_blank");
+            aElem.setAttribute("href", url);
+            aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+            divEl.appendChild(aElem);
+
+        }
+
+
+        function fail(evt) {
+            console.log(evt.target.error.code);
+        }
+        
+        function onDeviceReady()
+{
+// do your thing!
+//alert("Downloading File");
+       // downloadFile();
+}
     </script>
 </head>
-<body>
+<body onload="onBodyLoad();">
     <div class="container">
         <div class="heaser">
             <ul class="ulHeader">
@@ -274,5 +353,6 @@
             </div>
         </div>
     </div>
+    <a href="#" onclick="downloadFile();">Download and display image</a>
 </body>
 </html>

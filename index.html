@@ -26,7 +26,7 @@
 
         $(document).ready(function () {
             var online = navigator.onLine;    // Detecting the internet connection
-            //alert(online);
+            alert(online);
             if (online) {
                 // do your stuff
             } else {
@@ -68,7 +68,7 @@
             }
             $("#submit").click(function () {
                  initPushwoosh();              
-                //alert("button clicked1.");
+                alert("button clicked1.");
                 handleLogin();
                 //alert("button clicked2.");
                 UserLogin();
@@ -86,6 +86,7 @@
         var flag3 = "false";
         var flag4 = "false";
         function UserLogin() {
+            alert("enter in login");
             $.ajax({
                 type: "POST",
                 url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
@@ -103,8 +104,8 @@
                             var username = prod.FirstName + " " + prod.LastName;
                             $.ajax({
                                 type: "POST",
-                                //url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
-                                url: "Webservice.asmx/GetSchools_SchoolCodeWise",
+                                url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
+                                //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
                                 data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
