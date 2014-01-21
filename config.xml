@@ -18,6 +18,6 @@ ITC"
     </author>
 
     
-    <!--<gap:plugin name="com.pushwoosh.plugins.pushwoosh" />-->
+    <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
 
 </widget>
