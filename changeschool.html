@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <!--<script type="text/javascript" src="js/jquery-1.4.2.js"></script>-->
-    <script src="JS/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
     <script src="JS/json2.js" type="text/javascript"></script>
     <link href="Styles/style.css" rel="stylesheet" type="text/css" />
@@ -84,7 +84,7 @@
                                                 $("#Something").show();
                                                 if (response != null && response != "") {
                                                     var prods = response.d;
-                                                    $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#fff;text-decoration:none;background:url(images/linkBG.png);font-size:14px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a></center>");
+                                                    $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a></center>");
                                                     return prods.SchoolName;
                                                 }
                                                 else {
@@ -115,7 +115,7 @@
                                             var prods = response.d;
                                             for (i = 0; i < prods.length; i++) {
                                                 if (prods[i].SchoolName != "" && prods[i].SchoolName != null) {
-                                                    $("#Something").append("<a href='ataglance.html?value=" + prods[i].SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#fff;text-decoration:none;background:url(images/linkBG.png);font-size:14px;margin: 2px 0px 2px 0px;'>" + prods[i].SchoolName + "</a>" + "<br/>");
+                                                    $("#Something").append("<center><a href='ataglance.html?value=" + prods[i].SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods[i].SchoolName + "</a></center>");
                                                 }
                                             }
 
@@ -194,7 +194,7 @@
                                             $("#Something").show();
                                             if (response != null && response != "") {
                                                 var prods = response.d;
-                                                $("#Something").append("<a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#fff;text-decoration:none;background:url(images/linkBG.png);font-size:14px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a>" + "<br/>");
+                                                $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a></center>");
 
                                             }
                                             else {
@@ -222,7 +222,7 @@
                                         var prods = response.d;
                                         for (i = 0; i < prods.length; i++) {
                                             if (prods[i].SchoolName != "" && prods[i].SchoolName != null) {
-                                                $("#Something").append("<a href='ataglance.html?value=" + prods[i].SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#fff;text-decoration:none;background:url(images/linkBG.png);font-size:14px;margin: 2px 0px 2px 0px;'>" + prods[i].SchoolName + "</a>" + "<br/>");
+                                                $("#Something").append("<center><a href='ataglance.html?value=" + prods[i].SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods[i].SchoolName + "</a></center>");
                                             }
                                         }
 
@@ -258,10 +258,11 @@
 <body>
     <div id="Something" class="schoolsList" style="display: none;">
         <center>
-            <img src="images/logo_communicator.png" width="205px" height="67px" alt="InTouch Communicator"
+            <img src="images/logo.png" width="250px" height="125px" alt="InTouch Communicator"
                 style="margin: 10px 0px 0px 0px;" /></center>
-        <span style="">You are member of the following Businesses. Please select a Business
-            for which you want to be logged in.</span><br />
+        <span style="font-family:Arial; font-size:18px; margin-top:10px">
+        Select the Organization you would like to get in Touch With.
+        </span><br />
     </div>
 </body>
 </html>

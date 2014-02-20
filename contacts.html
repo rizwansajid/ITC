@@ -4,8 +4,8 @@
     <!--<script src="JS/jquery-1.4.2.min.js" type="text/javascript"></script>-->
     <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
-    <script src="js/json2.js" type="text/javascript"></script>
-    <script src="js/date.format.js" type="text/javascript"></script>
+    <script src="JS/json2.js" type="text/javascript"></script>
+    <script src="JS/date.format.js" type="text/javascript"></script>
     <link href="Styles/MobileAppStyle.css" rel="stylesheet" type="text/css" />
     <title>Contacts</title>
     <!-- toggle menu -->
@@ -66,6 +66,10 @@
             $("#lnkResources").attr("href", "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkShare").attr("href", "share.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkChangeSchool").attr("href", "changeschool.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
+             $("#lnkLogout").click(function () {
+                //alert("yes");
+                localStorage.clear();
+            })
             $("#lnkLogout").attr("href", "index.html");
         }
 

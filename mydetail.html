@@ -63,6 +63,10 @@
             $("#lnkResources").attr("href", "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkShare").attr("href", "share.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkChangeSchool").attr("href", "changeschool.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
+             $("#lnkLogout").click(function () {
+                //alert("yes");
+                localStorage.clear();
+            })
             $("#lnkLogout").attr("href", "index.html");
         }
 
@@ -147,25 +151,6 @@
                 failure: function (errMsg) {
                     alert("Something Went Wrong!");
                     //$('#errorMessage').text(errMsg); //errorMessage is id of the div
-                }
-            });
-        }
-
-        function InsertPushToken(email,token) {
-            alert("Email: " + email);
-            alert("Token: " + token);
-            $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/InsertPushTokenAndroid',
-                //url: 'WebService.asmx/InsertPushTokenAndroid',
-                type: 'POST',
-                data: "{'PushToken': '" + token + "','Email': '" + email + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    alert("Details Updated Successfully!");
-                },
-                failure: function (errMsg) {
-                    alert("Something Went Wrong!");
                 }
             });
         }

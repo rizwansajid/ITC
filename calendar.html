@@ -66,6 +66,10 @@
             $("#lnkResources").attr("href", "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkShare").attr("href", "share.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkChangeSchool").attr("href", "changeschool.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
+             $("#lnkLogout").click(function () {
+                //alert("yes");
+                localStorage.clear();
+            })
             $("#lnkLogout").attr("href", "index.html");
         }
 
@@ -73,8 +77,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                             // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
-                url: 'WebService.asmx/GetSchool_SchoolIdWise',
+                             url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+                // url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),
                 contentType: "application/json; charset=utf-8",
@@ -95,8 +99,8 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
-                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
+                //url: 'WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
+                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -113,7 +117,6 @@
                         //                        var date2 = new Date(parseInt(milli2)).format("dd mmm,yyyy (HH:mm:ss)");
                         var date1 = new Date(parseInt(milli)).format("mmm dd,yyyy HH:mm TT");
                         var date2 = new Date(parseInt(milli2)).format("mmm dd,yyyy HH:mm TT");
-
                         document.getElementById("dlCalender").innerHTML += "<dt>" + Kewords[i].CalendarEventTitle + "</dt><dd><span>" + date1 + " - " + date2 + "</span><br />" + Kewords[i].CalendarEventDescription + "</dd>";
 
                     }
@@ -129,8 +132,8 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
-                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
+                //url: 'WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
+                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 type: 'POST',
                 data: "{'ChannelId': '" + channelId + "','SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -290,7 +293,7 @@
             </ul>
         </div>
         <div class="detail-area">
-            <h3 style="margin: 10px auto 0 auto;color:#cc0000;">
+            <h3 style="margin: 10px auto 0 auto;color:#000000;">
                 Calender
             </h3>
             <div class="marginChannel">
