@@ -23,13 +23,13 @@ function initPushwoosh()
 
 function registerPushwoosh(email)
 {
-alert("emailPush: "+email);
+//alert("email: "+email);
 	var pushNotification = window.plugins.pushNotification;
 	//alert("pushNotification: "+pushNotification);
 	//projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID"
 	pushNotification.registerDevice({ projectid: "301388285624", appid: "3913D-FBE0C" },
 									function(token) {
-										alert("RegistrationID: "+token);
+										//alert("RegistrationID: "+token);
 										InsertPushToken(email,token);
 										//alert("Inserted Successfully.");
 										onPushwooshInitialized(token);
@@ -63,7 +63,7 @@ function InsertPushToken(email,token) {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    alert("Details Updated Successfully!");
+                    //alert("Details Updated Successfully!");
                 },
                 failure: function (errMsg) {
                     alert("Something Went Wrong!");

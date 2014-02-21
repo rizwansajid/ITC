@@ -21,15 +21,13 @@
 
 
         function clickSubmit() {
-            alert("Submit click");
-            initPushwoosh();
             //alert('aaaojeeee aaaojeeee');
             //alert("button clicked.");
             //alert($('#txtEmail').val());
-            //$("divLoading").fadeIn(400);
-            //$("divLoading").fadeOut(2000);
-            registerPushwoosh($('#txtEmail').val());
-            handleLogin();  
+            $("divLoading").fadeIn(400);
+            $("divLoading").fadeOut(2000);
+            handleLogin();
+            //registerPushwoosh($('#txtEmail').val());
             UserLogin();
             LoginBusinessAdmin();
             LoginBackOfficeUser();
@@ -49,7 +47,6 @@
 
 
         $(document).ready(function () {
-            initPushwoosh();
        // alert("ready");
              $('#dvLoading').fadeOut(10);
             //$("#dvLoading").fadeOut();
@@ -106,7 +103,7 @@
             
             
             //alert("button Logged2. email: " + $('#txtEmail').val());
-            registerPushwoosh($('#txtEmail').val());
+           // registerPushwoosh($('#txtEmail').val());
             //alert("registerPushwoosh");
             UserLogin();
             //alert("UserLogin");
@@ -442,14 +439,14 @@
             <!--<form id="loginForm">-->
             <center><h3 style="font-family:Arial">Sign In</h3></center>
             <div style="float: left; width: 100%; height: auto">
-                <div class="input-text">
+                <!--<div class="input-text">
                     User Name:
-                </div>
+                </div>-->
                 <input id="txtEmail" class="input-area" type="text" placeholder="Enter username here"
                        tabindex="1" size="50" maxlength="60" name="txtEmail" />
-                <div class="input-text">
+                <!--<div class="input-text">
                     Password:
-                </div>
+                </div>-->
                 <input id="txtPassword" class="input-area" type="password" placeholder="Enter password here"
                        tabindex="1" size="20" maxlength="15" name="txtPassword" />
             </div>
