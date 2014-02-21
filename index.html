@@ -26,9 +26,9 @@
             //alert($('#txtEmail').val());
             $("divLoading").fadeIn(400);
             $("divLoading").fadeOut(2000);
-            UserLogin();
             handleLogin();
             //registerPushwoosh($('#txtEmail').val());
+            UserLogin();
             LoginBusinessAdmin();
             LoginBackOfficeUser();
 
@@ -76,10 +76,9 @@
                 $("#txtEmail").val(window.localStorage["username"]);
                 $("#txtPassword").val(window.localStorage["password"]);
                 // alert("button Logged1.");
-                
+                handleLogin();
                 setTimeout(function () {
-                    UserLogin();
-                    handleLogin(); LoginBusinessAdmin();
+                    UserLogin(); LoginBusinessAdmin();
                     LoginBackOfficeUser();
                    
                     $('#dvLoading').fadeOut(2000);
