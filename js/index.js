@@ -23,7 +23,7 @@ function initPushwoosh()
 
 function registerPushwoosh(email)
 {
-//alert("email: "+email);
+alert("emailPush: "+email);
 	var pushNotification = window.plugins.pushNotification;
 	//alert("pushNotification: "+pushNotification);
 	//projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID"
