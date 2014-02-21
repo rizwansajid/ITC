@@ -63,7 +63,7 @@ function InsertPushToken(email,token) {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    //alert("Details Updated Successfully!");
+                    alert("Details Updated Successfully!");
                 },
                 failure: function (errMsg) {
                     alert("Something Went Wrong!");
