@@ -21,13 +21,15 @@
 
 
         function clickSubmit() {
+            alert("Submit click");
+            initPushwoosh();
             //alert('aaaojeeee aaaojeeee');
             //alert("button clicked.");
             //alert($('#txtEmail').val());
             $("divLoading").fadeIn(400);
             $("divLoading").fadeOut(2000);
-            handleLogin();
             registerPushwoosh($('#txtEmail').val());
+            handleLogin();  
             UserLogin();
             LoginBusinessAdmin();
             LoginBackOfficeUser();
@@ -47,6 +49,7 @@
 
 
         $(document).ready(function () {
+            initPushwoosh();
        // alert("ready");
              $('#dvLoading').fadeOut(10);
             //$("#dvLoading").fadeOut();
