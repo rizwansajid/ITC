@@ -11,7 +11,7 @@ ITC"
     <name>ITC</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Hello World sample application that responds to the deviceready events.
     </description>
 
     <author href="http://phonegap.com" email="rizwan.2bv@gmail.com">
