@@ -1,6 +1,6 @@
 function initPushwoosh()
 {
-    alert("Init-push");
+    //alert("Init-push");
 	var pushNotification = window.plugins.pushNotification;
 	pushNotification.onDeviceReady();
 
