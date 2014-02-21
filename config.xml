@@ -45,4 +45,6 @@ ITC"
     
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
 
+  <access origin="*"/>
+
 </widget>
