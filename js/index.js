@@ -17,7 +17,7 @@ function registerPushwooshIOS(email) {
         pushNotification.setApplicationIconBadgeNumber(0);
     });
 
-    pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "301388285624", appname: "3913D-FBE0C" },
+    pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "3913D-FBE0C", appname: "ITC" },
 									function (status) {
 									    var deviceToken = status['deviceToken'];
 									    alert('registerDevice: ' + deviceToken);
@@ -192,8 +192,9 @@ function initPushwoosh() {
     //}
 
     if (device.platform == "iPhone" || device.platform == "iOS") {
-        registerPushwooshIOS();
+        registerPushwooshIOS(email);
         pushNotification.onDeviceReady();
+        alert("initPW success");
     }
 }
 
