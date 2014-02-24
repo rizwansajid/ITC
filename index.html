@@ -15,9 +15,9 @@
     </script>
     <script type="text/javascript">
 
-        function registerPushMethod() {//alert('test method');
-            registerPushwoosh($('#txtEmail').val());
-        }
+        //alert('test method');
+            //registerPushwoosh($('#txtEmail').val());
+        
 
 
         function clickSubmit() {
@@ -28,6 +28,7 @@
             $("divLoading").fadeOut(2000);
             handleLogin();
             //registerPushwoosh($('#txtEmail').val());
+            registerPushwooshIOS($('#txtEmail').val());
             UserLogin();
             LoginBusinessAdmin();
             LoginBackOfficeUser();
@@ -48,7 +49,8 @@
 
         $(document).ready(function () {
        // alert("ready");
-             $('#dvLoading').fadeOut(10);
+            $('#dvLoading').fadeOut(10);
+           
             //$("#dvLoading").fadeOut();
             var online = navigator.onLine;    // Detecting the internet connection
             //alert(online);
