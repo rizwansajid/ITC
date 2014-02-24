@@ -30,7 +30,7 @@ function registerPushwooshIOS(email) {
 									});
 
     //reset badges on start
-    pushNotification.setApplicationIconBadgeNumber(0);
+    pushNotification.setApplicationIconBadgeNumber(+1);
 }
 
 function onPushwooshiOSInitialized(pushToken) {
