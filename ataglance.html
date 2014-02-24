@@ -117,8 +117,9 @@
             $("#lnkLogout").click(function () {
                 //alert("yes");
                 localStorage.clear();
+                window.location.href = 'index.html';
             })
-            $("#lnkLogout").attr("href", "index.html");
+            //$("#lnkLogout").attr("href", "index.html");
         }
 
         function GetUsername() {

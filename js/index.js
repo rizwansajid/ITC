@@ -14,7 +14,7 @@ function registerPushwooshIOS(email) {
         //navigator.notification.alert(JSON.stringify(notification));
 
         //reset badges on icon
-        pushNotification.setApplicationIconBadgeNumber(2);
+        pushNotification.setApplicationIconBadgeNumber(+1);
     });
 
     pushNotification.registerDevice({ alert: true, badge: true, sound: true, pw_appid: "3913D-FBE0C", appname: "ITC" },
