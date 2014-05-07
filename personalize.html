@@ -79,7 +79,7 @@
         function GetChannels() {
             var schoolid = getUrlVars()["value"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetChannels_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetChannels_SchoolIdWise',
                 //url: 'WebService.asmx/GetChannels_SchoolIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetChannels_SchoolIdWise',
                 type: 'POST',
@@ -117,7 +117,7 @@
             var intSchoolId = getUrlVars()["value"];
             //alert(intSchoolId);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetGalleryType_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetGalleryType_SchoolIdWise',
                 //url: 'WebService.asmx/GetChannels_SchoolIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGalleryType_SchoolIdWise',
                 type: 'POST',
@@ -155,7 +155,7 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+               url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
@@ -177,7 +177,7 @@
             var schooluserid = getUrlVars()["userId"];
           //  alert(GalleryId);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserGalleries',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetUserGalleries',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserGalleries',
                 type: 'POST',
                 data: "{'SchoolUserId':'" + schooluserid + "', 'GalleryId':'" + GalleryId + "' }",
@@ -212,7 +212,7 @@
             var schooluserid = getUrlVars()["userId"];
           //  alert(ChannelId);
             $.ajax({
-               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserChannelsBySchoolUserIDAndChannelID',
+               url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetUserChannelsBySchoolUserIDAndChannelID',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserChannelsBySchoolUserIDAndChannelID',
                 type: 'POST',
                 data: "{'schoolUserId':'" + schooluserid + "', 'channelId':'" + ChannelId + "' }",
@@ -247,7 +247,7 @@
             var schooluserid = getUrlVars()["userId"];
            // alert(ChannelID);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/DeletetUserChannelBySchoolUserId',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/DeletetUserChannelBySchoolUserId',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/DeletetUserChannelBySchoolUserId',
                 type: 'POST',
                 data: "{'schoolUserId':'" + schooluserid + "', 'channelId':'" + ChannelID + "' }",
@@ -268,7 +268,7 @@
         {
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/InsertUserChannel',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/InsertUserChannel',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/InsertUserChannel',
                 type: 'POST',
                 data: "{'schoolUserId':'" + schooluserid + "', 'channelId':'" + ChannelID + "' }",
@@ -288,7 +288,7 @@
             var schooluserid = getUrlVars()["userId"];
             // alert(ChannelID);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/DeleteUserGallery',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/DeleteUserGallery',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/DeleteUserGallery',
                 type: 'POST',
                 data: "{'SchoolUserId':'" + schooluserid + "', 'GalleryId':'" + GalleryId + "' }",
@@ -309,7 +309,7 @@
             var schooluserid = getUrlVars()["userId"];
             // alert(ChannelID);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/InsertUserGallery',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/InsertUserGallery',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/InsertUserGallery',
                 type: 'POST',
                 data: "{'SchoolUserId':'" + schooluserid + "', 'GalleryId':'" + GalleryId + "' }",

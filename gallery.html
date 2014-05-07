@@ -77,7 +77,7 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
@@ -100,7 +100,7 @@
          ParamdataGallery = { "intSchoolId": querystringGallery, "SchoolUserId": schooluserid }
         function GetGallery() {
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetGallery_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetGallery_SchoolIdWise',
                 //url: 'WebService.asmx/GetGallery_SchoolIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGallery_SchoolIdWise',
                 type: 'POST',
@@ -125,7 +125,7 @@
             var intSchoolId = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetGallery_SchoolIdTypeWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetGallery_SchoolIdTypeWise',
                 //url: 'WebService.asmx/GetGallery_SchoolIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGallery_SchoolIdTypeWise',
                 type: 'POST',
@@ -153,7 +153,7 @@
           // alert(intSchoolId);
           // alert(schooluserid);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/BindGaleryTypeBySchoolId',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/BindGaleryTypeBySchoolId',
                 //url: 'WebService.asmx/GetChannels_SchoolIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/BindGaleryTypeBySchoolId',
                 type: 'POST',

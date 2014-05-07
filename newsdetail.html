@@ -77,7 +77,7 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                 url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
                 // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                  //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
@@ -103,7 +103,7 @@
             //alert(schooluserid);
             $.ajax({
                 //url: 'WebService.asmx/GetNews_NewsIdWise',
-                 url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetNews_NewsIdWise',
+                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetNews_NewsIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsIdWise',
                 type: 'POST',
                 data: "{'intNewsId': '" + newsid + "'}",
@@ -131,7 +131,7 @@
             var schooluserid = getUrlVars()["userId"];
             //alert(schooluserid);
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
                // url: 'WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
                 type: 'POST',
@@ -158,7 +158,7 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
               //  url: 'WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 type: 'POST',

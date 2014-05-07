@@ -90,7 +90,7 @@
         Paramdata = { "SchoolId": querystring, "SchoolUserId": schooluserid }
         function GetSchoolInfo() {
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
@@ -122,9 +122,9 @@
             $('.viewresource').live("click", function () {
                 //  alert('click');
                     var path = $(this).attr("id");
-                  alert(path);
+                //  alert(path);
                 //downloadFile(path);
-                  var prods = "http://intouchcommunicator.com.baventur.arvixevps.com/WebCommunicator/ViewResourceFile.aspx?filepath=" + path;
+                    var prods = "http://intouchcommunicator.com/WebCommunicator/ViewResourceFile.aspx?filepath="+ path;
                     var ref = window.open(prods, '_blank', 'location=yes');
                 });
             
@@ -132,7 +132,7 @@
         
         function GetResources() {
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetResourcesSchoolId_SchoolUserIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetResourcesSchoolId_SchoolUserIdWise',
                 //url: 'WebService.asmx/GetResources_SchoolIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetResourcesSchoolId_SchoolUserIdWise',
                 type: 'POST',
@@ -148,7 +148,7 @@
                    var ImagePath= Kewords[i].DocumentIcon;
                    
                   var imgpath= ImagePath.replace('~/', '');
-                  
+               // alert(Kewords[i].ResourceName);
                  // document.getElementById("dlResources").innerHTML += "<div style='width:260px'><div style='float:left'><img src='" + imgpath.toLowerCase() + "' width='50px' height='50px' /></div><div style='float:left; width:160px'><p style='margin:5px;padding:0px;'><strong>" + Kewords[i].ResourcesTitle + "</strong><br />" + Kewords[i].ResourcesDescription + " </p></div><div style='float: right; margin: 10px 0px 0px 0px;'><input type='button' value='View' id='" + Kewords[i].ResourceName + "' class='viewresource' /></div></div>";
                   $("#dlResources").append("<tr><td><img src='" + imgpath.toLowerCase() + "' width='50px' height='50px' /></td><td Style='font-size: 12px; color: gray; vertical-align: top; padding-top: 4px; width:158px'><p style='margin:5px;padding:0px;'><strong>" + Kewords[i].ResourcesTitle + "</strong><br />" + Kewords[i].ResourcesDescription + " </p></td><td style='padding-top:10px'><input type='button' value='View' id='" + Kewords[i].ResourceName + "' class='viewresource' /></td> </tr>");
                     }
@@ -164,7 +164,7 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetResources_SchoolIDUserIdandChannelWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetResources_SchoolIDUserIdandChannelWise',
                 //url: 'WebService.asmx/GetResources_SchoolChannelWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetResources_SchoolIDUserIdandChannelWise',
                 type: 'POST',
@@ -194,7 +194,7 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 type: 'POST',

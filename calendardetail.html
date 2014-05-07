@@ -77,7 +77,7 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                              url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                              url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
                               //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                               //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
@@ -100,7 +100,7 @@
             var schoolid = getUrlVars()["value"];
             var calendarid = getUrlVars()["calendarId"];
             $.ajax({
-                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_CalendarIdWise',
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetCalendar_CalendarIdWise',
                 //url: 'WebService.asmx/GetCalendar_CalendarIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_CalendarIdWise',
                 type: 'POST',
@@ -136,7 +136,7 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
+               url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 //url: 'WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 type: 'POST',
@@ -173,7 +173,7 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
-                 url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
+                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 type: 'POST',
