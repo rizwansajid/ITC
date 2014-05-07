@@ -16,22 +16,10 @@
             var schooluserid = getUrlVars()["userId"];
             var schoolid = getUrlVars()["value"];
             var username = getUrlVars()["username"];
-            if ((schooluserid == "undefined" || schooluserid == "0") && username == "Admin") {
-                //alert("Here..");
-                //                var SchoolEmail = GetSchoolBySchoolID();
-                //                setTimeout(function () {
-                //                alert("Ready SchoolEmail." + SchoolEmail);
-                //                }, 2000);
+            UserLogin();
+            LoginBusinessAdmin();
+            LoginBackOfficeUser();
 
-                GetSchoolsBySchoolId();
-            }
-            else if ((schooluserid == "undefined" || schooluserid == "0") && username == "Back%20User") {
-                //alert("Back Office User.");
-            }
-            else {
-                //alert("UserID not zero.")
-                GetSchoolsBySchoolUserId();
-            }
         });
 
         function getUrlVars() {
@@ -44,219 +32,249 @@
             }
             return vars;
         }
-
-        function GetSchoolsBySchoolUserId() {
-            var schooluserid = getUrlVars()["userId"];
-            var username = getUrlVars()["username"];
+        function UserLogin() {
+           // alert("button clicked.");
             $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchoolUserBySchoolUserId',
-                //url: 'WebService.asmx/GetSchoolUserBySchoolUserId',
-                type: 'POST',
-                data: "{'SchoolUserId':'" + schooluserid + "'}",
+                type: "POST",
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/MobileAppGetSchoolUserByEmailAndPassword',
+               // url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
+                //url: "Webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
+                data: "{'email': '" + window.localStorage["username"] + "','password':'" + window.localStorage["password"] + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    var Kewords = {};
-                    Kewords = response.d;
-                    for (i = 0; i < Kewords.length; i++) {
-                        var email = Kewords[i].Email;
-                        var password = Kewords[i].Password;
-                        $.ajax({
-                            url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchoolUserByEmailAndPassword',
-                            //url: 'WebService.asmx/GetSchoolUserByEmailAndPassword',
-                            type: 'POST',
-                            data: "{'email':'" + email + "','password':'" + password + "'}",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function (response) {
-                                if (response != "" && response != null) {
-                                    var Kewords = {};
-                                    Kewords = response.d;
-                                    for (i = 0; i < Kewords.length; i++) {
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
-                                            //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
-                                            data: "{'strSchoolCode': '" + Kewords[i].SchoolCode + "'}",
-                                            contentType: "application/json; charset=utf-8",
-                                            dataType: "json",
-                                            success: function (response) {
-                                                $("#Something").show();
-                                                if (response != null && response != "") {
-                                                    var prods = response.d;
-                                                    $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a></center>");
-                                                    return prods.SchoolName;
-                                                }
-                                                else {
-                                                    alert("No data to display");
-                                                    alert(response.d);
-                                                }
-                                            },
-                                            error: function (e) {
-                                                $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
-                                            }
-                                        });
-
-                                    }
-                                }
-                                else {
-                                    //alert("Else:::GetSchoolUserByEmailAndPassword");
-                                }
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchoolByEmailPassword",
-                                    //url: "Webservice.asmx/GetSchoolByEmailPassword",
-                                    data: "{'email':'" + email + "','password':'" + password + "'}",
-                                    contentType: "application/json; charset=utf-8",
-                                    dataType: "json",
-                                    success: function (response) {
-                                        $("#Something").show();
-                                        if (response.d != null && response.d != "") {
-                                            var prods = response.d;
-                                            for (i = 0; i < prods.length; i++) {
-                                                if (prods[i].SchoolName != "" && prods[i].SchoolName != null) {
-                                                    $("#Something").append("<center><a href='ataglance.html?value=" + prods[i].SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods[i].SchoolName + "</a></center>");
-                                                }
-                                            }
-
-                                        }
-                                        else {
-                                            alert("No data to display");
-                                            alert(response.d);
-                                        }
-                                    },
-                                    error: function (e) {
-                                        $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
-                                    }
-                                });
-
-                            },
-                            failure: function (errMsg) {
-                                $('#errorMessage').text(errMsg); //errorMessage is id of the div 
-                            }
-                        });
-                    }
-
-
-                },
-                failure: function (errMsg) {
-                    $('#errorMessage').text(errMsg); //errorMessage is id of the div 
-                }
-            });
-        }
-
-        function GetSchoolsBySchoolId() {
-            var schoolid = getUrlVars()["value"];
-            var schooluserid = getUrlVars()["userId"];
-            var username = getUrlVars()["username"];
-            $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
-                //url: 'WebService.asmx/GetSchool_SchoolIdWise',
-                type: 'POST',
-                data: "{'SchoolId':'" + schoolid + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    //alert("Success Response.");
-                    var Kewords = {};
-                    Kewords = response.d;
-                    //alert("Before For Loop." + Kewords);
-                    //                    for (i = 0; i < Kewords.length; i++) {
-                    //alert("For Loop.");
-                    var email = Kewords.SchoolEmail;
-                    //alert("Email:" + email);
-                    var password = Kewords.SchoolPassword;
-                    //alert("Password:" + password);
-                    $.ajax({
-                        url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchoolUserByEmailAndPassword',
-                        //url: 'WebService.asmx/GetSchoolUserByEmailAndPassword',
-                        type: 'POST',
-                        data: "{'email':'" + email + "','password':'" + password + "'}",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            if (response.d != "" && response.d != null) {
-                                //alert("Success Response1.");
-                                var Kewords = {};
-                                Kewords = response.d;
-                                //alert(Kewords.SchoolCode);
-                                for (i = 0; i < Kewords.length; i++) {
-                                    //alert("Entered Loop...");
-                                    //alert(Kewords[i].SchoolCode);
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
-                                        //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
-                                        data: "{'strSchoolCode': '" + Kewords[i].SchoolCode + "'}",
-                                        contentType: "application/json; charset=utf-8",
-                                        dataType: "json",
-                                        success: function (response) {
-                                            $("#Something").show();
-                                            if (response != null && response != "") {
-                                                var prods = response.d;
-                                                $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a></center>");
-
-                                            }
-                                            else {
-                                                alert("No data to display");
-                                                alert(response.d);
-                                            }
-                                        },
-                                        error: function (e) {
-                                            $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
-                                        }
-                                    });
-
-                                }
-                            }
+                    if (response.d != null && response.d != "") {
+                        var prods = response.d;
+                        
+                        $.each(prods, function (index, prod) {
+                            var schooluserid = prod.SchoolUserId;
+                            var username = prod.FirstName + " " + prod.LastName;
                             $.ajax({
                                 type: "POST",
-                                url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchoolByEmailPassword",
-                                //url: "Webservice.asmx/GetSchoolByEmailPassword",
-                                data: "{'email':'" + email + "','password':'" + password + "'}",
+                                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchools_SchoolCodeWise',
+                               // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
+                                //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
+                                data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (response) {
-                                    $("#Something").show();
-                                    if (response.d != null && response.d != "") {
+                                    if (response != null && response != "") {
+                                        //alert(response);
                                         var prods = response.d;
-                                        for (i = 0; i < prods.length; i++) {
-                                            if (prods[i].SchoolName != "" && prods[i].SchoolName != null) {
-                                                $("#Something").append("<center><a href='ataglance.html?value=" + prods[i].SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#00000;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;'>" + prods[i].SchoolName + "</a></center>");
+                                        if (prods.SchoolName != "" && prods.SchoolName != null) {
+                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;font-family:Arial'>" + prods.SchoolName + "</a></center>");
+                                            var type = getUrlVars()["type"];
+                                            var schoolId = getUrlVars()["schoolId"];
+                                            if (type != '' && type != undefined) {
+                                                if (type == 'News') {
+                                                    window.location.href = "news.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                                else if (type == 'Calender') {
+                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                                else if (type == 'Resource') {
+                                                    window.location.href = "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
                                             }
                                         }
-
+                                        return prods.SchoolName;
                                     }
                                     else {
                                         alert("No data to display");
                                         alert(response.d);
                                     }
-                                    
                                 },
                                 error: function (e) {
-                                    $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                                    if (flag3 == "false") {
+                                        flag3 = "true";
+                                    }
                                 }
                             });
-                        },
-                        failure: function (errMsg) {
-                            $('#errorMessage').text(errMsg); //errorMessage is id of the div 
+                        });
+                    }
+                    else {
+                        if (flag1 == "false") {
+                            flag1 = "true";
                         }
-                    });
-                    //}
-
-
+                    }
                 },
-                failure: function (errMsg) {
-                    $('#errorMessage').text(errMsg); //errorMessage is id of the div 
+                error: function (e) {
+                    if (flag3 == "false") {
+                        flag3 = "true";
+                    }
                 }
             });
+
+            return false;
         }
+
+        function LoginBusinessAdmin() {
+            //alert("admin enter");
+            $.ajax({
+                type: "POST",
+               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/MobileAppGetSchoolByEmailPassword',
+               // url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolByEmailPassword",
+                //url: "Webservice.asmx/MobileAppGetSchoolByEmailPassword",
+                data: "{'email': '" + window.localStorage["username"] + "','password':'" + window.localStorage["password"] + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d != null && response.d != "") {
+                        var prods = response.d;
+                        var Kewords = {};
+                        Kewords = response.d;
+                        var schooluserid = Kewords[0].SchoolId;
+                        // alert(schooluserid);
+                       
+                        $.each(prods, function (index, prod) {
+
+                           // alert(schooluserid);
+                            //var username = prod.FirstName + " " + prod.LastName;
+                            var username = "Admin";
+                            $.ajax({
+                                type: "POST",
+                                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchools_SchoolCodeWise',
+                                //url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
+                                //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
+                                data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    if (response != null && response != "") {
+                                      
+                                        var prods = response.d;
+                                        if (prods.SchoolName != "" && prods.SchoolName != null) {
+
+                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;font-family:Arial;'>" + prods.SchoolName + "</a></center>");
+                                            var type = getUrlVars()["type"];
+                                            var schoolId = getUrlVars()["schoolId"];
+                                            if (type != '' && type != undefined) {
+                                                if (type == 'News') {
+                                                    window.location.href = "news.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                                else if (type == 'Calender') {
+                                                    //alert("SchoolUser ID: " + schooluserid);
+                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                                else if (type == 'Resource') {
+                                                    window.location.href = "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                            }
+                                        }
+                                        return prods.SchoolName;
+                                    }
+                                    else {
+                                        alert("No data to display");
+                                        alert(response.d);
+                                    }
+                                },
+                                error: function (e) {
+                                    if (flag4 == "false") {
+                                        flag4 = "true";
+                                    }
+                                }
+                            });
+                        });
+                    }
+                    else {
+                        if (flag2 == "false") {
+                            flag2 = "true";
+                        }
+                    }
+                },
+                error: function (e) {
+                    if (flag4 == "false") {
+                        flag4 = "true";
+                    }
+                }
+            });
+
+            return false;
+        }
+
+        function LoginBackOfficeUser() {
+            $.ajax({
+                type: "POST",
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword',
+               // url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword",
+                //url: "Webservice.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword",
+                data: "{'email': '" + window.localStorage["username"] + "','password':'" + window.localStorage["password"] + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d != null && response.d != "") {
+                        var prods = response.d;
+                        $.each(prods, function (index, prod) {
+                            var schooluserid = prod.SchoolUserId;
+                            //var username = prod.FirstName + " " + prod.LastName;
+                            var username = "Back User";
+                            //alert("School Code::::" + prod.SchoolId);
+                            $.ajax({
+                                type: "POST",
+                                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                                //url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchool_SchoolIdWise",
+                                //url: "Webservice.asmx/GetSchool_SchoolIdWise",
+                                data: "{'SchoolId': '" + prod.SchoolId + "'}",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    if (response != null && response != "") {
+                                        var prods = response.d;
+                                        if (prods.SchoolName != "" && prods.SchoolName != null) {
+                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;font-family:Arial;'>" + prods.SchoolName + "</a></center>");
+                                            var type = getUrlVars()["type"];
+                                            var schoolId = getUrlVars()["schoolId"];
+                                            if (type != '' && type != undefined) {
+                                                if (type == 'News') {
+                                                    window.location.href = "news.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                                else if (type == 'Calender') {
+                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                                else if (type == 'Resource') {
+                                                    window.location.href = "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                }
+                                            }
+                                        }
+                                        return prods.SchoolName;
+                                    }
+                                    else {
+                                        alert("No data to display");
+                                        alert(response.d);
+                                    }
+                                },
+                                error: function (e) {
+                                    if (flag3 == "true" && flag4 == "true") {
+                                        $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                                    }
+                                }
+                            });
+                        });
+                    }
+                    else {
+                        if (flag1 == "true" && flag2 == "true") {
+                            alert("Wrong Username or Password.");
+                        }
+                    }
+                },
+                error: function (e) {
+                    if (flag3 == "true" && flag4 == "true") {
+                        $("#Something").html("There was an error retrieving records." + "Error Description:  " + e.d);
+                    }
+                }
+            });
+
+            return false;
+        }
+     
+
+       
 
         
     </script>
 </head>
 <body>
-    <div id="Something" class="schoolsList" style="display: none;">
+    <div id="Something" class="schoolsList">
         <center>
             <img src="images/logo.png" width="250px" height="125px" alt="InTouch Communicator"
                 style="margin: 10px 0px 0px 0px;" /></center>

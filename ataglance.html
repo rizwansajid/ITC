@@ -117,9 +117,8 @@
             $("#lnkLogout").click(function () {
                 //alert("yes");
                 localStorage.clear();
-                window.location.href = 'index.html';
             })
-            //$("#lnkLogout").attr("href", "index.html");
+            $("#lnkLogout").attr("href", "index.html");
         }
 
         function GetUsername() {
@@ -137,7 +136,8 @@
             var username = getUrlVars()["username"];
             //alert(schooluserid);
             $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsSchoolUserIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsSchoolUserIdWise',
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetNews_NewsSchoolUserIdWise',
                 //url: 'WebService.asmx/GetNews_NewsSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
@@ -169,7 +169,8 @@
             }
             var username = getUrlVars()["username"];
             $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
@@ -202,7 +203,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),

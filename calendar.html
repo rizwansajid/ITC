@@ -77,7 +77,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                             url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 // url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),
@@ -99,8 +100,9 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolIdSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -113,10 +115,12 @@
                         var milli = '';
                         milli = Kewords[i].EventStartDate.replace(/\/Date\((-?\d+)\)\//, '$1');
                         milli2 = Kewords[i].EventEndDate.replace(/\/Date\((-?\d+)\)\//, '$1');
+                        
 //                        var date1 = new Date(parseInt(milli)).format("dd mmm,yyyy (HH:mm:ss)");
                         //                        var date2 = new Date(parseInt(milli2)).format("dd mmm,yyyy (HH:mm:ss)");
-                        var date1 = new Date(parseInt(milli)).format("mmm dd,yyyy HH:mm TT");
-                        var date2 = new Date(parseInt(milli2)).format("mmm dd,yyyy HH:mm TT");
+                        var date1 = new Date(parseInt(milli)).format("ddd mmm dd ,yyyy");
+                        var date2 = new Date(parseInt(milli2)).format("ddd mmm dd ,yyyy"); 
+                        
                         document.getElementById("dlCalender").innerHTML += "<dt>" + Kewords[i].CalendarEventTitle + "</dt><dd><span>" + date1 + " - " + date2 + "</span><br />" + Kewords[i].CalendarEventDescription + "</dd>";
 
                     }
@@ -132,14 +136,15 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
+                 url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 //url: 'WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 type: 'POST',
                 data: "{'ChannelId': '" + channelId + "','SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    //alert("Success Calender");
+                  //  alert("Success Calender");
                     var Kewords = {};
                     Kewords = response.d;
                     document.getElementById("dlCalender").innerHTML = "";
@@ -149,9 +154,9 @@
                         milli2 = Kewords[i].EventEndDate.replace(/\/Date\((-?\d+)\)\//, '$1');
                         //                        var date1 = new Date(parseInt(milli)).format("dd mmm,yyyy (HH:mm:ss)");
                         //                        var date2 = new Date(parseInt(milli2)).format("dd mmm,yyyy (HH:mm:ss)");
-                        var date1 = new Date(parseInt(milli)).format("mmm dd,yyyy HH:mm TT");
-                        var date2 = new Date(parseInt(milli2)).format("mmm dd,yyyy HH:mm TT");
-
+                        var date1 = new Date(parseInt(milli)).format("ddd mmm dd ,yyyy");
+                        var date2 = new Date(parseInt(milli2)).format("ddd mmm dd ,yyyy");
+                       // alert(Kewords[i].CalendarEventTitle);
                         document.getElementById("dlCalender").innerHTML += "<dt>" + Kewords[i].CalendarEventTitle + "</dt><dd><span>" + date1 + " - " + date2 + "</span><br />" + Kewords[i].CalendarEventDescription + "</dd>";
 
                     }
@@ -167,8 +172,9 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -197,6 +203,7 @@
             $('#ddlChannels').change(function () {
                 var channelId = $('#ddlChannels').val();
                 if (channelId !== "0") {
+               // alert(channelId);
                     GetCalenderChannelIdWise(channelId);
                 }
             });

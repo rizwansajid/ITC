@@ -77,7 +77,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),
@@ -95,11 +96,13 @@
             });
         }
         var querystringGallery = getUrlVars()["value"];
-        ParamdataGallery = { "intSchoolId": querystringGallery }
+         var schooluserid = getUrlVars()["userId"];
+         ParamdataGallery = { "intSchoolId": querystringGallery, "SchoolUserId": schooluserid }
         function GetGallery() {
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetGallery_SchoolIdWise',
                 //url: 'WebService.asmx/GetGallery_SchoolIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGallery_SchoolIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGallery_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(ParamdataGallery),
                 contentType: "application/json; charset=utf-8",
@@ -118,8 +121,78 @@
                 }
             });
         }
+        function GetGalleryGalleryTypeIdWise(GalleryTypeId) {
+            var intSchoolId = getUrlVars()["value"];
+            var schooluserid = getUrlVars()["userId"];
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetGallery_SchoolIdTypeWise',
+                //url: 'WebService.asmx/GetGallery_SchoolIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGallery_SchoolIdTypeWise',
+                type: 'POST',
+                data: "{'intSchoolId': '" + intSchoolId + "','GalleryTypeId': '" + GalleryTypeId + "','SchoolUserId':'" + schooluserid + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var Kewords = {};
+                    Kewords = response.d;
+                    document.getElementById("ulImggallery").innerHTML = "";
+                    for (i = 0; i < Kewords.length; i++) {
+                        //document.getElementById("ulImggallery").innerHTML += "<li><a href='http://projectx.2bvision.com/Gallery/" + Kewords[i].GalleryFileName + "' rel='lightbox[plants]' title='"+ Kewords[i].GalleryFileName +"'><img src=http://projectx.2bvision.com/Gallery/" + Kewords[i].GalleryFileName + " width='180px' height='150px' /></a><br/><div style='margin-left: 5%;'>" + Kewords[i].GalleryFileName + "</div></li>";
+                        document.getElementById("ulImggallery").innerHTML += "<li><a href='http://projectx.2bvision.com/Gallery/" + querystringGallery + "/" + Kewords[i].GalleryFileName + "' rel='lightbox[plants]' title='" + Kewords[i].GalleryFileName + "'><img src=http://projectx.2bvision.com/Gallery/" + querystringGallery + "/" + Kewords[i].GalleryFileName + " width='180px' height='150px' /></a><br/><div style='margin-left: 5%;'>" + Kewords[i].GalleryFileName + "</div></li>";
+                    }
 
-        $(document).ready(function () {
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div
+                }
+            });
+        }
+          function GetGalleryType() {
+              var intSchoolId = getUrlVars()["value"];
+              var schooluserid = getUrlVars()["userId"];
+          // alert(intSchoolId);
+          // alert(schooluserid);
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/BindGaleryTypeBySchoolId',
+                //url: 'WebService.asmx/GetChannels_SchoolIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/BindGaleryTypeBySchoolId',
+                type: 'POST',
+                data: "{'intSchoolId': '" + intSchoolId + "', 'SchoolUserId': '" + schooluserid + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+            //     alert("Success");
+                //alert(responce.d);
+                    var Kewords = {};
+                    Kewords = response.d;
+                    //var prods = response.d;
+                    for (i = 0; i < Kewords.length; i++) {
+                        //  alert(Kewords[i].GalleryTypeId);
+                         $("#ddlGallery").append("<option value='" + Kewords[i].GalleryTypeId + "'>" + Kewords[i].GalleryTypeName + "</option>");
+                        
+
+                    }
+                  
+
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
+                },
+                error: function (msg) {
+                    alert("error");
+                }
+
+            });
+        }
+
+          $(document).ready(function () {
+              $('#ddlGallery').change(function () {
+                  var GalleryId = $('#ddlGallery').val();
+                  if (GalleryId !== "0") {
+                      //alert(GalleryId);
+                      GetGalleryGalleryTypeIdWise(GalleryId);
+                  }
+              });
             assignLinks();
             GetFunctions();
         });
@@ -133,6 +206,7 @@
         function GetFunctions() {
             GetSchoolInfo();
             GetGallery();
+           GetGalleryType();
             GetUsername();
         }
       
@@ -215,6 +289,10 @@
             <h3 style="margin: 10px auto 0 auto;color:#cc0000;">
                 Gallery
             </h3>
+                 <div class="marginChannel">
+                <select id="ddlGallery">
+                    <option value="0">Select Category</option>
+                </select></div>
             <div style="text-align:center;">
                 <div class="overflowOneDiv" style="height:450px">
                     <ul id="ulImggallery" style="list-style: none">

@@ -77,7 +77,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                              url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+                              url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                              //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                               //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),
@@ -99,8 +100,9 @@
             var schoolid = getUrlVars()["value"];
             var calendarid = getUrlVars()["calendarId"];
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_CalendarIdWise',
                 //url: 'WebService.asmx/GetCalendar_CalendarIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_CalendarIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_CalendarIdWise',
                 type: 'POST',
                 data: "{'intCalendarId': '" + calendarid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -116,10 +118,10 @@
                         milli2 = Kewords[i].EventEndDate.replace(/\/Date\((-?\d+)\)\//, '$1');
 //                        var date1 = new Date(parseInt(milli)).format("dd mmm,yyyy (HH:mm:ss)");
                         //                        var date2 = new Date(parseInt(milli2)).format("dd mmm,yyyy (HH:mm:ss)");
-                        var date1 = new Date(parseInt(milli)).format("HH:mm TT mmm dd,yyyy");
-                        var date2 = new Date(parseInt(milli2)).format("mmm dd,yyyy HH:mm TT");
+                        var date1 = new Date(parseInt(milli)).format("hh:mm tt ddd mmm dd ,yyyy");
+                        var date2 = new Date(parseInt(milli2)).format("ddd mmm dd ,yyyy");
                         var Location=Kewords[i].EventLocation;
-                        document.getElementById("dlCalender").innerHTML += "<dt>" + Kewords[i].CalendarEventTitle + "</dt><dd><span>" + date1 + ",  " + Location +  "</span><br /><br /><br />" + Kewords[i].CalendarEventDescription + "</dd>";
+                        document.getElementById("dlCalender").innerHTML += "<dt>" + Kewords[i].CalendarEventTitle + "</dt><dd><span>" + date1 + " to  " + date2 + ", " + Location + "</span><br /><br /><br />" + Kewords[i].CalendarEventDescription + "</dd>";
 
                     }
 
@@ -134,8 +136,9 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
+               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 //url: 'WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetCalendar_SchoolChannelSchoolUserIdWise',
                 type: 'POST',
                 data: "{'ChannelId': '" + channelId + "','SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -170,8 +173,9 @@
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
             $.ajax({
+                 url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",

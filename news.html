@@ -77,7 +77,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                 url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+                // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                  //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),
@@ -101,8 +102,9 @@
             var schooluserid = getUrlVars()["userId"];
             //alert(schooluserid);
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetNews_NewsSchoolUserIdWise',
                 //url: 'WebService.asmx/GetNews_NewsSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsSchoolUserIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -129,8 +131,9 @@
             var schooluserid = getUrlVars()["userId"];
             //alert(schooluserid);
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
                 //url: 'WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetNews_NewsChannelSchoolUserIdWise',
                 type: 'POST',
                 data: "{'intChannelId': '" + channelId + "','SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -154,9 +157,12 @@
         function GetChannels() {
             var schoolid = getUrlVars()["value"];
             var schooluserid = getUrlVars()["userId"];
+           // alert(schoolid);
+           // alert(schooluserid);
             $.ajax({
+                 url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 //url: 'WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserActiveChannels_SchoolIdSchoolUserIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "','SchoolUserId':'" + schooluserid + "'}",
                 contentType: "application/json; charset=utf-8",

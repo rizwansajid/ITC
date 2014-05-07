@@ -33,6 +33,9 @@
                 runEffect();
                 return false;
             });
+
+
+
         });
     </script>
     <!-- toggle menu ends -->
@@ -72,12 +75,13 @@
             })
             $("#lnkLogout").attr("href", "index.html");
         }
-
+        
         function GetChannels() {
             var schoolid = getUrlVars()["value"];
             $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetChannels_SchoolIdWise',
                 //url: 'WebService.asmx/GetChannels_SchoolIdWise',
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetChannels_SchoolIdWise',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetChannels_SchoolIdWise',
                 type: 'POST',
                 data: "{'SchoolId': '" + schoolid + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -85,15 +89,65 @@
                 success: function (response) {
                     var Kewords = {};
                     Kewords = response.d;
-                    for (i = 0; i < Kewords.length; i++) {
+                    var prods = response.d;
+                    for(i=0; i<Kewords.length; i++)
+                    {
+                      //  alert(Kewords[i].ChannelId);
+                        var ChanelID = Kewords[i].ChannelId;
+                        var schooluserid = getUrlVars()["userId"];
+                        $("#divChannels").append("<input type='checkbox' checked='true' name= '" + Kewords[i].ChannelName + "' value='" + Kewords[i].ChannelId + "' id='" + Kewords[i].ChannelId + "' class='cbChannels'>" + Kewords[i].ChannelName + "<br>");
+                        
+                        GerCheckBoxChecked(ChanelID);
                         //document.getElementById("dlNews").innerHTML += "<dt>" + Kewords[i].NewsHeading + "</dt><dd>" + Kewords[i].NewsDescription + "</dd>";
-                        $("#divChannels").append("<input type='checkbox' checked='true' name= '" + Kewords[i].ChannelName + "' value='" + Kewords[i].ChannelId + "'>" + Kewords[i].ChannelName + "<br>");
+                        
                     }
+                   // $("#divChannels").click();
 
                 },
                 failure: function (errMsg) {
                     $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
                 }
+            });
+
+
+    
+
+        }
+        function GetGalleries() {
+            var intSchoolId = getUrlVars()["value"];
+            //alert(intSchoolId);
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetGalleryType_SchoolIdWise',
+                //url: 'WebService.asmx/GetChannels_SchoolIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetGalleryType_SchoolIdWise',
+                type: 'POST',
+                data: "{'intSchoolId': '" + intSchoolId + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+               // alert("Success");
+                    var Kewords = {};
+                    Kewords = response.d;
+                    var prods = response.d;
+                    for (i = 0; i < Kewords.length; i++) {
+                        //  alert(Kewords[i].ChannelId);
+                        var GalleryId = Kewords[i].GalleryTypeId;
+                        $("#divGalleries").append("<input type='checkbox' checked='true' name= '" + Kewords[i].GalleryTypeName + "' value='" + Kewords[i].GalleryTypeId + "' id='" + Kewords[i].GalleryTypeId + "' class='cbGalleries'>" + Kewords[i].GalleryTypeName + "<br>");
+
+                        GetGaleryCheckBoxChecked(GalleryId);
+                        //document.getElementById("dlNews").innerHTML += "<dt>" + Kewords[i].NewsHeading + "</dt><dd>" + Kewords[i].NewsDescription + "</dd>";
+
+                    }
+                    // $("#divChannels").click();
+
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
+                },
+                error: function (msg) {
+                    alert(msg.toString());
+                }
+
             });
         }
 
@@ -101,7 +155,8 @@
         Paramdata = { "SchoolId": querystring }
         function GetSchoolInfo() {
             $.ajax({
-                url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
+               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetSchool_SchoolIdWise',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetSchool_SchoolIdWise',
                 //url: 'WebService.asmx/GetSchool_SchoolIdWise',
                 type: 'POST',
                 data: JSON.stringify(Paramdata),
@@ -118,10 +173,195 @@
                 }
             });
         }
+        function GetGaleryCheckBoxChecked(GalleryId) {
+            var schooluserid = getUrlVars()["userId"];
+          //  alert(GalleryId);
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserGalleries',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserGalleries',
+                type: 'POST',
+                data: "{'SchoolUserId':'" + schooluserid + "', 'GalleryId':'" + GalleryId + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response1) {
+                   //  alert("Succss");
+                    //var test = responce1.d;
+                    var testresponse = {};
+                    testresponse = response1.d;
 
+
+                    //alert(testresponse[i].ChannelId);
+                    if (testresponse != "" && testresponse != null) {
+                        for (i = 0; i < testresponse.length; i++) {
+                            var testId = testresponse[i].GalleryId;
+                            //  alert(testId);
+
+                            $("#" + testId).attr('checked', false);
+                        }
+                    }
+                    else {
+                        // alert("No");
+
+                    }
+
+                }
+            });
+        }
+        function GerCheckBoxChecked(ChannelId) {
+            
+            var schooluserid = getUrlVars()["userId"];
+          //  alert(ChannelId);
+            $.ajax({
+               url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/GetUserChannelsBySchoolUserIDAndChannelID',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/GetUserChannelsBySchoolUserIDAndChannelID',
+                type: 'POST',
+                data: "{'schoolUserId':'" + schooluserid + "', 'channelId':'" + ChannelId + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response1) {
+                   // alert("Succss");
+                   //var test = responce1.d;
+                    var testresponse = {};
+                    testresponse = response1.d;
+                   
+                       
+                        //alert(testresponse[i].ChannelId);
+                    if (testresponse != "" && testresponse != null) {
+                        for (i = 0; i < testresponse.length; i++) {
+                            var testId = testresponse[i].ChannelId;
+                          //  alert(testId);
+
+                            $("#" + testId).attr('checked', false);
+                        }
+                        }
+                        else {
+                           // alert("No");
+
+                        }
+                    
+                }
+            });
+        }
+        function ActivateChannel(ChannelID)
+        {
+            var schooluserid = getUrlVars()["userId"];
+           // alert(ChannelID);
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/DeletetUserChannelBySchoolUserId',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/DeletetUserChannelBySchoolUserId',
+                type: 'POST',
+                data: "{'schoolUserId':'" + schooluserid + "', 'channelId':'" + ChannelID + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    
+                    alert("Channel Activated Successfully");
+                    
+
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
+                }
+            });
+        }
+        function DeActivateChannel(ChannelID)
+        {
+            var schooluserid = getUrlVars()["userId"];
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/InsertUserChannel',
+                //url: 'http://projectxmobile.2bvision.com/WebService.asmx/InsertUserChannel',
+                type: 'POST',
+                data: "{'schoolUserId':'" + schooluserid + "', 'channelId':'" + ChannelID + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Channel DeActivated Successfully");
+                    
+
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
+                }
+            });
+        }
+        function ActivateGallry(GalleryId) {
+            var schooluserid = getUrlVars()["userId"];
+            // alert(ChannelID);
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/DeleteUserGallery',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/DeleteUserGallery',
+                type: 'POST',
+                data: "{'SchoolUserId':'" + schooluserid + "', 'GalleryId':'" + GalleryId + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    alert("Gallery Activated Successfully");
+
+
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
+                }
+            });
+        }
+        function DeActivateGallery(GalleryId) {
+            var schooluserid = getUrlVars()["userId"];
+            // alert(ChannelID);
+            $.ajax({
+                url: 'http://mobile.intouchcommunicator.com.baventur.arvixevps.com/WebService.asmx/InsertUserGallery',
+               // url: 'http://projectxmobile.2bvision.com/WebService.asmx/InsertUserGallery',
+                type: 'POST',
+                data: "{'SchoolUserId':'" + schooluserid + "', 'GalleryId':'" + GalleryId + "' }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    alert("Gallery DeActivated Successfully");
+
+
+                },
+                failure: function (errMsg) {
+                    $('#errorMessage').text(errMsg); //errorMessage is id of the div GetUserActiveChannels_SchoolIdSchoolUserIdWise
+                }
+            });
+        }
         $(document).ready(function () {
+
+
             assignLinks();
             GetFunctions();
+
+            $(".cbChannels").live('click', function () {
+
+
+                var checkID = $(this).attr('id');
+                if($("#" + checkID).attr('checked'))
+                {
+                    ActivateChannel(checkID);
+                }
+                else
+                {
+                    DeActivateChannel(checkID);
+                }
+                
+              
+                
+
+            });
+            $(".cbGalleries").live('click', function () {
+                var GalleryCheckId = $(this).attr('id');
+                if($("#"+ GalleryCheckId).attr('checked'))
+                {
+                    ActivateGallry(GalleryCheckId);
+                }
+                else
+                {
+                    DeActivateGallery(GalleryCheckId);
+                }
+            });
+            
+            
         });
 
         function GetUsername() {
@@ -133,7 +373,9 @@
         function GetFunctions() {
             GetSchoolInfo();
             GetChannels();
+            GetGalleries();
             GetUsername();
+
         }
       
     </script>
@@ -214,6 +456,9 @@
             <h3 style="margin: 10px auto 0 auto;color:#cc0000;">
                 Channels</h3>
             <div id="divChannels" class="overflowOneDiv">
+            </div>
+            <h3>Galleries</h3>
+            <div id="divGalleries" class="overflowOneDiv">
             </div>
             <!--<h3 style="margin: 10px auto 0 auto;">
                 Select the language</h3>
