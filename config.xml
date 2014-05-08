@@ -43,9 +43,7 @@ ITC"
 
     
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
-   <feature name="InAppBrowser">
-    <param name="ios-package" value="CDVInAppBrowser" />
-</feature>
+   <plugin name="InAppBrowser" value="CDVInAppBrowser" />
 
   <access origin="*"/>
 
