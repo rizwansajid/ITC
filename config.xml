@@ -43,7 +43,7 @@ ITC"
 
     
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
-    <plugin name="InAppBrowser" value="CDVInAppBrowser" />
+    <gap:plugin name="InAppBrowser" value="CDVInAppBrowser" />
 
   <access origin="*"/>
 
