@@ -43,7 +43,7 @@ ITC"
 
     
     <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
-  <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
+   <gap:plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
 
   <access origin="*"/>
 
