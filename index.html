@@ -15,9 +15,9 @@
     </script>
     <script type="text/javascript">
 
-        //alert('test method');
-            //registerPushwoosh($('#txtEmail').val());
-        
+        function registerPushMethod() {//alert('test method');
+            registerPushwoosh($('#txtEmail').val());
+        }
 
 
         function clickSubmit() {
@@ -27,8 +27,7 @@
             $("divLoading").fadeIn(400);
             $("divLoading").fadeOut(2000);
             handleLogin();
-            //registerPushwoosh($('#txtEmail').val());
-            registerPushwooshIOS($('#txtEmail').val());
+            registerPushwoosh($('#txtEmail').val());
             UserLogin();
             LoginBusinessAdmin();
             LoginBackOfficeUser();
@@ -49,8 +48,7 @@
 
         $(document).ready(function () {
        // alert("ready");
-            $('#dvLoading').fadeOut(10);
-           
+             $('#dvLoading').fadeOut(10);
             //$("#dvLoading").fadeOut();
             var online = navigator.onLine;    // Detecting the internet connection
             //alert(online);
@@ -73,7 +71,7 @@
             //var form = $("#loginForm");
             if (window.localStorage["username"] != 'undefined' && window.localStorage["password"] != 'undefined' && window.localStorage["username"] != '' && window.localStorage["password"] != '' && window.localStorage["username"] != null && window.localStorage["password"]!=null) {
               //  alert("local");
-                 //$("#dvLoading").fadeIn(400);
+                 $("#dvLoading").fadeIn(400);
                 // $("#dvLoading").fadeIn(2000);
                 $("#txtEmail").val(window.localStorage["username"]);
                 $("#txtPassword").val(window.localStorage["password"]);
@@ -105,7 +103,7 @@
             
             
             //alert("button Logged2. email: " + $('#txtEmail').val());
-           // registerPushwoosh($('#txtEmail').val());
+            registerPushwoosh($('#txtEmail').val());
             //alert("registerPushwoosh");
             UserLogin();
             //alert("UserLogin");
@@ -127,7 +125,7 @@
             //alert("button clicked.");
             $.ajax({
                 type: "POST",
-                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetSchoolUserByEmailAndPassword',
+                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetSchoolUserByEmailAndPassword',
                 //url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
                 //url: "Webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
                 data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
@@ -144,7 +142,7 @@
                             $.ajax({
                                 type: "POST",
                                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchools_SchoolCodeWise',
-                                // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
+                               // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
                                 //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
                                 data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
                                 contentType: "application/json; charset=utf-8",
@@ -203,7 +201,7 @@
         function LoginBusinessAdmin() {
             $.ajax({
                 type: "POST",
-                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetSchoolByEmailPassword',
+                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetSchoolByEmailPassword',
                 //url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolByEmailPassword",
                 //url: "Webservice.asmx/MobileAppGetSchoolByEmailPassword",
                 data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
@@ -215,17 +213,17 @@
                         var Kewords = {};
                         Kewords = response.d;
                         var schooluserid = Kewords[0].SchoolId;
-                        // alert(schooluserid);
+                       // alert(schooluserid);
                         $("#Something").show();
                         $("#wraper").hide();
                         $.each(prods, function (index, prod) {
-
+                            
                             //alert(schooluserid);
                             //var username = prod.FirstName + " " + prod.LastName;
                             var username = "Admin";
                             $.ajax({
                                 type: "POST",
-                                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchools_SchoolCodeWise',
+                                 url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchools_SchoolCodeWise',
                                 //url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
                                 //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
                                 data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
@@ -235,19 +233,19 @@
                                     if (response != null && response != "") {
                                         var prods = response.d;
                                         if (prods.SchoolName != "" && prods.SchoolName != null) {
-                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;font-family:Arial;'>" + prods.SchoolName + "</a></center>");
+                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId="+schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;font-family:Arial;'>" + prods.SchoolName + "</a></center>");
                                             var type = getUrlVars()["type"];
                                             var schoolId = getUrlVars()["schoolId"];
                                             if (type != '' && type != undefined) {
                                                 if (type == 'News') {
-                                                    window.location.href = "news.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                    window.location.href = "news.html?value=" + schoolId + "&userId="+schooluserid + "&username=" + username + "";
                                                 }
                                                 else if (type == 'Calender') {
                                                     //alert("SchoolUser ID: " + schooluserid);
-                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId="+schooluserid + "&username=" + username + "";
                                                 }
                                                 else if (type == 'Resource') {
-                                                    window.location.href = "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
+                                                    window.location.href = "resources.html?value=" + schoolId + "&userId="+schooluserid + "&username=" + username + "";
                                                 }
                                             }
                                         }
@@ -303,8 +301,8 @@
                             //alert("School Code::::" + prod.SchoolId);
                             $.ajax({
                                 type: "POST",
-                                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
-                                // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchool_SchoolIdWise",
+                               url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
+                               // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchool_SchoolIdWise",
                                 //url: "Webservice.asmx/GetSchool_SchoolIdWise",
                                 data: "{'SchoolId': '" + prod.SchoolId + "'}",
                                 contentType: "application/json; charset=utf-8",
@@ -362,7 +360,8 @@
         function GetSchoolNameBySchoolCode(code) {
             $.ajax({
                 type: "POST",
-                url: "http://projectx.2bvision.com/WebCommunicator/Webservice.asmx/GetSchoolUserByEmailAndPassword",
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchoolUserByEmailAndPassword',
+                //url: "http://projectx.2bvision.com/WebCommunicator/Webservice.asmx/GetSchoolUserByEmailAndPassword",
                 //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
                 data: "{'strSchoolCode': '" + code + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -452,14 +451,14 @@
             <!--<form id="loginForm">-->
             <center><h3 style="font-family:Arial">Sign In</h3></center>
             <div style="float: left; width: 100%; height: auto">
-                <!--<div class="input-text">
+                <div class="input-text">
                     User Name:
-                </div>-->
+                </div>
                 <input id="txtEmail" class="input-area" type="text" placeholder="Enter username here"
                        tabindex="1" size="50" maxlength="60" name="txtEmail" />
-                <!--<div class="input-text">
+                <div class="input-text">
                     Password:
-                </div>-->
+                </div>
                 <input id="txtPassword" class="input-area" type="password" placeholder="Enter password here"
                        tabindex="1" size="20" maxlength="15" name="txtPassword" />
             </div>
