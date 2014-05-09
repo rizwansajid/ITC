@@ -127,7 +127,8 @@
             //alert("button clicked.");
             $.ajax({
                 type: "POST",
-                url: "http://mobile.intouchcommunicator.com/webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetSchoolUserByEmailAndPassword',
+                //url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
                 //url: "Webservice.asmx/MobileAppGetSchoolUserByEmailAndPassword",
                 data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -142,7 +143,8 @@
                             var username = prod.FirstName + " " + prod.LastName;
                             $.ajax({
                                 type: "POST",
-                                url: "http://mobile.intouchcommunicator.com/Webservice.asmx/GetSchools_SchoolCodeWise",
+                                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchools_SchoolCodeWise',
+                                // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
                                 //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
                                 data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
                                 contentType: "application/json; charset=utf-8",
@@ -201,7 +203,8 @@
         function LoginBusinessAdmin() {
             $.ajax({
                 type: "POST",
-                url: "http://mobile.intouchcommunicator.com/webservice.asmx/MobileAppGetSchoolByEmailPassword",
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetSchoolByEmailPassword',
+                //url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetSchoolByEmailPassword",
                 //url: "Webservice.asmx/MobileAppGetSchoolByEmailPassword",
                 data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -209,15 +212,21 @@
                 success: function (response) {
                     if (response.d != null && response.d != "") {
                         var prods = response.d;
+                        var Kewords = {};
+                        Kewords = response.d;
+                        var schooluserid = Kewords[0].SchoolId;
+                        // alert(schooluserid);
                         $("#Something").show();
                         $("#wraper").hide();
                         $.each(prods, function (index, prod) {
-                            var schooluserid = prod.SchoolUserId;
+
+                            //alert(schooluserid);
                             //var username = prod.FirstName + " " + prod.LastName;
                             var username = "Admin";
                             $.ajax({
                                 type: "POST",
-                                url: "http://mobile.intouchcommunicator.com/Webservice.asmx/GetSchools_SchoolCodeWise",
+                                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchools_SchoolCodeWise',
+                                //url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchools_SchoolCodeWise",
                                 //url: "Webservice.asmx/GetSchools_SchoolCodeWise",
                                 data: "{'strSchoolCode': '" + prod.SchoolCode + "'}",
                                 contentType: "application/json; charset=utf-8",
@@ -231,14 +240,14 @@
                                             var schoolId = getUrlVars()["schoolId"];
                                             if (type != '' && type != undefined) {
                                                 if (type == 'News') {
-                                                    window.location.href = "news.html?value=" + schoolId + "&userId=0&username=" + username + "";
+                                                    window.location.href = "news.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
                                                 }
                                                 else if (type == 'Calender') {
                                                     //alert("SchoolUser ID: " + schooluserid);
-                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId=0&username=" + username + "";
+                                                    window.location.href = "calendar.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
                                                 }
                                                 else if (type == 'Resource') {
-                                                    window.location.href = "resources.html?value=" + schoolId + "&userId=0&username=" + username + "";
+                                                    window.location.href = "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "";
                                                 }
                                             }
                                         }
@@ -276,7 +285,8 @@
         function LoginBackOfficeUser() {
             $.ajax({
                 type: "POST",
-                url: "http://mobile.intouchcommunicator.com/webservice.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword",
+                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword',
+                //url: "http://projectxmobile.2bvision.com/webservice.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword",
                 //url: "Webservice.asmx/MobileAppGetBackOfficeUser_ByEmailandPassword",
                 data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
                 contentType: "application/json; charset=utf-8",
@@ -293,7 +303,8 @@
                             //alert("School Code::::" + prod.SchoolId);
                             $.ajax({
                                 type: "POST",
-                                url: "http://mobile.intouchcommunicator.com/Webservice.asmx/GetSchool_SchoolIdWise",
+                                url: 'http://mobile.intouchcommunicator.com/WebService.asmx/GetSchool_SchoolIdWise',
+                                // url: "http://projectxmobile.2bvision.com/Webservice.asmx/GetSchool_SchoolIdWise",
                                 //url: "Webservice.asmx/GetSchool_SchoolIdWise",
                                 data: "{'SchoolId': '" + prod.SchoolId + "'}",
                                 contentType: "application/json; charset=utf-8",
@@ -302,7 +313,7 @@
                                     if (response != null && response != "") {
                                         var prods = response.d;
                                         if (prods.SchoolName != "" && prods.SchoolName != null) {
-                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;color:#fff;text-decoration:none;background:url(images/linkBG.png);font-size:14px;margin: 2px 0px 2px 0px;'>" + prods.SchoolName + "</a></center>");
+                                            $("#Something").append("<center><a href='ataglance.html?value=" + prods.SchoolId + "&userId=" + schooluserid + "&username=" + username + "' style='padding: 3px 0px 3px 0px;display:block;width: 190px;text-align:center;text-decoration:none;font-size:17px;margin: 2px 0px 2px 0px;font-family:Arial;'>" + prods.SchoolName + "</a></center>");
                                             var type = getUrlVars()["type"];
                                             var schoolId = getUrlVars()["schoolId"];
                                             if (type != '' && type != undefined) {
