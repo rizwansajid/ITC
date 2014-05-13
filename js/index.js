@@ -55,7 +55,7 @@ function InsertPushToken(email, deviceToken) {
     //alert("Email: " + email);
     //alert("Token: " + token);
     $.ajax({
-        url: 'http://projectxmobile.2bvision.com/WebService.asmx/InsertPushTokenAndroid',
+        url: 'http://mobile.intouchcommunicator.com/WebService.asmx/InsertPushTokenAndroid',
         //url: 'WebService.asmx/InsertPushTokenAndroid',
         type: 'POST',
         data: "{'PushToken': '" + deviceToken + "','Email': '" + email + "'}",
