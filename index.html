@@ -15,9 +15,9 @@
     </script>
     <script type="text/javascript">
 
-        function registerPushMethod() {//alert('test method');
-            registerPushwoosh($('#txtEmail').val());
-        }
+        //function registerPushMethod() {//alert('test method');
+        //    registerPushwoosh($('#txtEmail').val());
+        //}
 
 
         function clickSubmit() {
@@ -27,7 +27,7 @@
             $("divLoading").fadeIn(400);
             $("divLoading").fadeOut(2000);
             handleLogin();
-            registerPushwoosh($('#txtEmail').val());
+            registerPushwooshIOS($('#txtEmail').val());
             UserLogin();
             LoginBusinessAdmin();
             LoginBackOfficeUser();
