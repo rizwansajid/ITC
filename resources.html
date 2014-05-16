@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="JS/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <!--<script src="JS/jquery-1.4.2.min.js" type="text/javascript"></script>-->
     <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <!--<script src="js/phonegap-1.4.1.js" type="text/javascript"></script>-->
+     <script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+    <script src="js/phonegap-1.4.1.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
-    <script src="jS/json2.js" type="text/javascript"></script>
-    <script src="jS/date.format.js" type="text/javascript"></script>
+    <script src="JS/json2.js" type="text/javascript"></script>
+    <script src="JS/date.format.js" type="text/javascript"></script>
     <link href="Styles/MobileAppStyle.css" rel="stylesheet" type="text/css" />
     
     <title>Resources</title>
@@ -44,7 +44,7 @@
      .resoursesclick
      {
      color:#737373;
-    /*color:White;*/
+   // color:White;
      text-decoration:none;
      }
      </style>
@@ -78,6 +78,7 @@
             $("#lnkResources").attr("href", "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkShare").attr("href", "share.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkChangeSchool").attr("href", "changeschool.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
+            $("#lnkUserPledges").attr("href", "UserPledges.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
              $("#lnkLogout").click(function () {
                 //alert("yes");
                 localStorage.clear();
@@ -122,8 +123,10 @@
             $('.viewresource').live("click", function () {
                 //  alert('click');
                     var path = $(this).attr("id");
-                    var prods = "http://intouchcommunicator.com/WebCommunicator/ViewResourceFile.aspx?filepath=" + path;
-                   var ref = window.open(prods, '_blank', 'location=yes');
+                //  alert(path);
+                //downloadFile(path);
+                    var prods = "http://intouchcommunicator.com/WebCommunicator/ViewResourceFile.aspx?filepath="+ path;
+                    var ref = window.open(prods, '_blank', 'location=yes');
                 });
             
         });
@@ -332,7 +335,7 @@ function downloadFile(FileName) {
                 <li><a id="lnkCalender">
                     <img src="images/calande-icon.png" width="35" height="30" alt="" />
                     <p class="marginP">
-                        Calander</p>
+                        Calender</p>
                 </a></li>
                 <li><a id="lnkGallery">
                     <img src="images/gallery-icon.png" width="35" height="30" alt="" />
@@ -364,6 +367,14 @@ function downloadFile(FileName) {
                     <p class="marginP">
                         Personalize</p>
                 </a></li>
+                 <li>
+                    <a id="lnkUserPledges">
+                        <img src="images/personalize-icon.png" width="35" height="30" alt="" />
+                        <p class="marginP">
+                            Donation
+                        </p>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="detail-area">

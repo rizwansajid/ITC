@@ -66,6 +66,7 @@
             $("#lnkResources").attr("href", "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkShare").attr("href", "share.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkChangeSchool").attr("href", "changeschool.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
+            $("#lnkUserPledges").attr("href", "UserPledges.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
              $("#lnkLogout").click(function () {
                 //alert("yes");
                 localStorage.clear();
@@ -254,10 +255,10 @@
             </div>
         </div>
         <a href="#" id="button">
-            <div class="menu-btn">
+            <div class="menu-btn" style="display:none">
             </div>
         </a>
-        <div class="School-name" id="divTagLine">
+        <div class="School-name" id="divTagLine" style="display:none">
             </div>
         <div class="nav" id="effect" style="display:none;">
             <ul class="main-nav">
@@ -306,9 +307,17 @@
                     <p class="marginP">
                         Personalize</p>
                 </a></li>
+                <li>
+                    <a id="lnkUserPledges">
+                        <img src="images/personalize-icon.png" width="35" height="30" alt="" />
+                        <p class="marginP">
+                            Donation
+                        </p>
+                    </a>
+                </li>
             </ul>
         </div>
-          <div style="float:right;margin-right:10px; margin-top:-30px">
+          <div style="float:right;margin-right:10px; margin-top:-36px">
             <input type="image" src="images/arrows_back_forward.png" id="btnBack" width="45" />
         </div>
         <div class="detail-area">

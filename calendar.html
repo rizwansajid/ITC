@@ -66,6 +66,7 @@
             $("#lnkResources").attr("href", "resources.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkShare").attr("href", "share.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
             $("#lnkChangeSchool").attr("href", "changeschool.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
+            $("#lnkUserPledges").attr("href", "UserPledges.html?value=" + schoolId + "&userId=" + schooluserid + "&username=" + username + "");
              $("#lnkLogout").click(function () {
                 //alert("yes");
                 localStorage.clear();
@@ -265,7 +266,7 @@
                 <li><a id="lnkCalender" class="active">
                     <img src="images/calande-icon.png" width="35" height="30" alt="" />
                     <p class="marginP">
-                        Calander</p>
+                        Calender</p>
                 </a></li>
                 <li><a id="lnkGallery">
                     <img src="images/gallery-icon.png" width="35" height="30" alt="" />
@@ -297,6 +298,14 @@
                     <p class="marginP">
                         Personalize</p>
                 </a></li>
+                <li>
+                    <a id="lnkUserPledges">
+                        <img src="images/personalize-icon.png" width="35" height="30" alt="" />
+                        <p class="marginP">
+                            Donation
+                        </p>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="detail-area">
