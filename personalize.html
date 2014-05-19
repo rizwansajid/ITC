@@ -257,6 +257,8 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
+                    var testName = $("#" + ChannelID).attr("name");
+                    //alert(testName);
                     
                     //alert("Channel Activated Successfully");
                     function alertDismissed() {
@@ -265,7 +267,7 @@
                     navigator.notification.alert(
                              'Channel Activated Successfully',  // message
                                  alertDismissed,         // callback
-                                  '',            // title
+                                  '' + testName + '',            // title
                                      'Done'                  // buttonName
                                            );
                     
@@ -287,6 +289,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
+                    var testName = $("#" + ChannelID).attr("name");
                     //  alert("Channel DeActivated Successfully");
                     function alertDismissed() {
 
@@ -294,7 +297,7 @@
                     navigator.notification.alert(
                              'Channel DeActivated Successfully!',  // message
                                  alertDismissed,         // callback
-                                  '',            // title
+                                  '' + testName + '',            // title
                                      'Done'                  // buttonName
                                            );
                     
@@ -316,6 +319,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
+                    var testName = $("#" + GalleryId).attr("name");
 
                     //  alert("Gallery Activated Successfully");
                     function alertDismissed() {
@@ -324,7 +328,7 @@
                     navigator.notification.alert(
                              'Gallery Activated Successfully',  // message
                                  alertDismissed,         // callback
-                                  '',            // title
+                                  ''+ testName+'',            // title
                                      'Done'                  // buttonName
                                            );
 
@@ -346,7 +350,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-
+                    var testName = $("#" + GalleryId).attr("name");
                     // alert("Gallery DeActivated Successfully");
                     function alertDismissed() {
 
@@ -354,7 +358,7 @@
                     navigator.notification.alert(
                              'Gallery DeActivated Successfully',  // message
                                  alertDismissed,         // callback
-                                  '',            // title
+                                  ''+ testName+'',            // title
                                      'Done'                  // buttonName
                                            );
 
