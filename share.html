@@ -8,6 +8,7 @@
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
      <script src="js/json2.js" type="text/javascript"></script>
     <script src="js/date.format.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.ios.js"></script>
     <!-- toggle menu -->
     <script type="text/javascript">
         $(function () {
@@ -53,7 +54,17 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    alert("Shared Successfully");
+                    // alert("Shared Successfully");
+                    function alertDismissed() {
+
+                    }
+                    navigator.notification.alert(
+                             'Shared Successfully',  // message
+                                 alertDismissed,         // callback
+                                  '',            // title
+                                     'Done'                  // buttonName
+                                           );
+
 
                 },
                 failure: function (errMsg) {
@@ -163,7 +174,7 @@
                 <li><a id="lnkAtAGlance">
                     <img src="images/at-a-glane.png" width="35" height="30" alt="" />
                     <p class="marginP">
-                        At a Glance</p>
+                         Home</p>
                 </a></li>
                 <li><a id="lnkNews">
                     <img src="images/nes-icon.png" width="35" height="30" alt="" />
@@ -193,7 +204,7 @@
                 <li><a id="lnkMyDetail">
                     <img src="images/my-detail-icon.png" width="35" height="30" alt="" />
                     <p class="marginP">
-                        My detail</p>
+                        My Details</p>
                 </a></li>
                 <li><a id="lnkShare" class="active">
                     <img src="images/Share-icon.png" width="35" height="30" alt="" />

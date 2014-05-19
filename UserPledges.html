@@ -74,6 +74,7 @@
                                                       'Thank You!',            // title
                                                          'Done'                  // buttonName
                                                                );
+                                        document.getElementById('txtAmmount').value = "";
                                        
                                         //alert("Pledge Donated Successfully");
                                     },
@@ -123,7 +124,17 @@
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (response) {
-                                alert("Pledge Donated Successfully");
+                                function alertDismissed() {
+
+                                }
+                                navigator.notification.alert(
+                                         'Pledge Donated Successfully',  // message
+                                             alertDismissed,         // callback
+                                              'Thank You!',            // title
+                                                 'Done'                  // buttonName
+                                                       );
+                                document.getElementById('txtAmmount').value = "";
+                                // alert("Pledge Donated Successfully");
                                
                             },
                             failure: function (errMsg) {
@@ -192,10 +203,8 @@
             {
                 SaveDonation();
             }
-            document.getElementById('txtAmmount').value = "";
-            document.getElementById('txtFirstName').value = "";
-            document.getElementById('txtAddress').value = "";
-            document.getElementById('txtPhone').value = "";
+           
+          
         }
 
         function SaveDonation() {
@@ -210,9 +219,20 @@
                 dataType: "json",
                 success: function (response) {
                    
-                  
+                    function alertDismissed() {
 
-                    alert("Pledge Donated Successfully");
+                    }
+                    navigator.notification.alert(
+                             'Pledge Donated Successfully',  // message
+                                 alertDismissed,         // callback
+                                  'Thank You!',            // title
+                                     'Done'                  // buttonName
+                                           );
+                    document.getElementById('txtAmmount').value = "";
+                    document.getElementById('txtFirstName').value = "";
+                    document.getElementById('txtAddress').value = "";
+                    document.getElementById('txtPhone').value = "";
+                    //alert("Pledge Donated Successfully");
                 },
                 failure: function (errMsg) {
                     $('#errorMessage').text(errMsg); //errorMessage is id of the div
@@ -296,7 +316,7 @@
                     <a id="lnkAtAGlance">
                         <img src="images/at-a-glane.png" width="35" height="30" alt="" />
                         <p class="marginP">
-                            At a Glance
+                            Home
                         </p>
                     </a>
                 </li>
@@ -344,7 +364,7 @@
                     <a id="lnkMyDetail" class="active">
                         <img src="images/my-detail-icon.png" width="35" height="30" alt="" />
                         <p class="marginP">
-                            My detail
+                            My Details
                         </p>
                     </a>
                 </li>
@@ -388,13 +408,13 @@
            
                         <div class="formSet clearfix">
                             <label>
-                                First Name
+                                Name
                             </label>
                             <input type="text" id="txtFirstName"></input>
                         </div>
                         <div class="formSet clearfix">
                             <label>
-                                Phone
+                                Phone Number
                             </label>
                             <input type="text" id="txtPhone"></input>
                         </div>
@@ -409,7 +429,7 @@
                 
         <div class="formSet clearfix">
             <label>
-                Ammount
+                Amount
             </label>
             <input type="text" id="txtAmmount"></input>
         </div>

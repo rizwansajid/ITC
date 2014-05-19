@@ -7,6 +7,7 @@
     <script src="JS/json2.js" type="text/javascript"></script>
     <script src="JS/date.format.js" type="text/javascript"></script>
     <link href="Styles/MobileAppStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf-8" src="cordova.ios.js"></script>
     <title>News</title>
     <!-- toggle menu -->
     <script type="text/javascript">
@@ -190,6 +191,15 @@
                 if (channelId !== "0") {
                     GetNewsChannelWise(channelId);
                 }
+            });
+            $("#dlNews a").live('click', function () {
+
+
+                var prods = $(this).attr('href');
+                // alert(prods);
+                var ref = window.open(prods, '_blank', 'location=yes');
+
+                return false;
             });
             //alert("Get Functions");
             GetFunctions();
