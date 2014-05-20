@@ -122,7 +122,8 @@
             });
             $('.viewresource').live("click", function () {
                 //  alert('click');
-                    var path = $(this).attr("id");
+                var path = $(this).attr("id");
+                path = path.replace(" ", "%20");
                 //  alert(path);
                 //downloadFile(path);
                     var prods = "http://intouchcommunicator.com/WebCommunicator/ViewResourceFile.aspx?filepath="+ path;
