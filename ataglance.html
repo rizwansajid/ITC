@@ -188,7 +188,7 @@
                       
                           var milli = '';
                         milli = Kewords[i].EventStartDate.replace(/\/Date\((-?\d+)\)\//, '$1');
-                        var date1 = new Date(parseInt(milli)).format("HH:mm TT mmm dd,yyyy");
+                        var date1 = new Date(parseInt(milli)).format("mmm dd,yyyy");
                         var str= date1 + ", " + Kewords[i].EventLocation;
                        // alert(str);
                         document.getElementById("dlCalender").innerHTML += "<dt><a style='color:#737373;text-decoration:none;' href='calendardetail.html?value=" + schoolid + "&userId=" + schooluserid + "&username=" + username + "&calendarId=" + Kewords[i].CalendarId + "'>" + Kewords[i].CalendarEventTitle + "</a></dt><dd><a style='color:#737373;text-decoration:none;' href='calendardetail.html?value=" + schoolid + "&userId=" + schooluserid + "&username=" + username + "&calendarId=" + Kewords[i].CalendarId + "'>" + str + "</a></dd>";
